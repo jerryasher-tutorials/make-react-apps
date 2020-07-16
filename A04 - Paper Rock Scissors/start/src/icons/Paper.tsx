@@ -1,6 +1,6 @@
-import React from "react";
+import React, { FC } from 'react';
 
-export default function() {
+const Paper: FC = (props) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -13,4 +13,6 @@ export default function() {
       </g>
     </svg>
   );
-}
+};
+
+export default Paper;

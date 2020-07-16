@@ -9,7 +9,21 @@ We'll build a Pomodoro timer that can teach us about rendering in React.
 ### React skills used in this app
 
 - Creating timers
-- React state w/ useState()
-- React effects w/ useEffect()
-- React refs w/ useRef()
+- React state w/ [useState()](https://reactjs.org/docs/hooks-state.html)
+- React effects w/ [useEffect()](https://reactjs.org/docs/hooks-effect.html)
+- React refs w/ [useRef()](https://reactjs.org/docs/hooks-reference.html#useref)
 - Parent and child components
+
+### More on React Hooks
+
+- [Introducing Hooks](https://reactjs.org/docs/hooks-intro.html)
+- [Hooks at a Glance](https://reactjs.org/docs/hooks-overview.html)
+- [Rules of Hooks](https://reactjs.org/docs/hooks-rules.html)
+- [Building Your Own Hooks](https://reactjs.org/docs/hooks-custom.html)
+- [Hooks API Reference](https://reactjs.org/docs/hooks-reference.html)
+- [Hooks FAQ](https://reactjs.org/docs/hooks-faq.html)
+
+### Additional Articles
+
+- [Understanding React Hooks](https://serverless-stack.com/chapters/understanding-react-hooks.html)
+- [Replacing Component Lifecycle Methods with React Hooks](https://blog.carbonfive.com/replacing-component-lifecycle-methods-with-react-hooks/)

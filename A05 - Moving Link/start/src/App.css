@@ -6,12 +6,16 @@ body {
   margin: 0;
   padding: 0;
   overflow: hidden;
-  /* background-image: url('https://i.imgur.com/noNWRPk.png'); */
+  background-image: url('https://i.imgur.com/noNWRPk.png');
 }
 
 .app {
   position: relative;
   height: 100vh;
+}
+
+canvas {
+  /* background: #a0e1e5; */
 }
 
 .arrows {
