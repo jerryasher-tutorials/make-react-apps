@@ -6,11 +6,11 @@ export default function SiteHeader() {
   const { isAuthenticated, login, logout, user } = useContext(Auth0Context);
 
   return (
-    <div className='site-header'>
+    <div className="site-header">
       {/* stuff on the left */}
       <div>
-        <Link to='/'>Home</Link>
-        <Link to='/dashboard'>Dashboard</Link>
+        <Link to="/">Home</Link>
+        <Link to="/dashboard">Dashboard</Link>
       </div>
 
       {/* stuff on the right */}
