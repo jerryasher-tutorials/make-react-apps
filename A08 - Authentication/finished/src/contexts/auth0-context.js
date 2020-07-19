@@ -15,8 +15,8 @@ export function Auth0Provider({ children }) {
 
     async function initAuth0() {
       const auth0 = await createAuth0Client({
-        domain: 'chrisoncode.auth0.com',
-        client_id: 'iyiNbWUuxDU6RO2SgtPlyyut7Xa3DWDJ',
+        domain: 'jerrya.auth0.com',
+        client_id: '64t4GSj0JNApmRlkNybnvkdNavGCY3IC',
         redirect_uri: window.location.origin,
       });
       setAuth0Client(auth0);
@@ -32,7 +32,7 @@ export function Auth0Provider({ children }) {
           alert(err);
         }
 
-        window.location.replace(window.location.pathname);
+        // window.location.replace(window.location.pathname);
       }
 
       // is a user authenticated

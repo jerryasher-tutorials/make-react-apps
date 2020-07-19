@@ -8,6 +8,7 @@ import './App.css';
 import { useAuth0 } from './contexts/auth0-context';
 
 export default function App() {
+  /*
   const { getToken } = useAuth0();
 
   useEffect(() => {
@@ -24,19 +25,20 @@ export default function App() {
 
     // we have data!
   }
+  */
 
   return (
     <Router>
-      <div className="app">
+      <div className='app'>
         {/* site header */}
         <SiteHeader />
 
         {/* routes */}
         <Switch>
-          <PrivateRoute path="/dashboard">
+          <PrivateRoute path='/dashboard'>
             <Dashboard />
           </PrivateRoute>
-          <Route path="/" exact={true}>
+          <Route path='/' exact={true}>
             <Home />
           </Route>
         </Switch>
