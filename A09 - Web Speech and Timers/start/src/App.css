@@ -46,27 +46,9 @@ h6 {
 }
 
 .timer {
-  display: flex;
-}
-
-input {
-  background: #444;
-  color: #eee;
-  border: none;
-  padding: 15px;
-  font-size: 21px;
-  margin-right: 4px;
-  margin-bottom: 4px;
-  border-radius: 5px;
-}
-
-input[type='number'] {
-  width: 100px;
-  flex-shrink: 1;
-}
-
-input[type='text'] {
-  flex-grow: 1;
+  color: #1f6e72;
+  font-size: 150px;
+  margin-bottom: 20px;
 }
 
 button {
@@ -75,14 +57,6 @@ button {
   outline: none;
   margin-right: 8px;
   cursor: pointer;
-}
-
-.add-button {
-  background: #555;
-  color: #999;
-  margin-top: 10px;
-  font-size: 14px;
-  padding: 10px 20px;
 }
 
 .buttons {
