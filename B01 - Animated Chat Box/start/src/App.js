@@ -1,4 +1,6 @@
-import React from 'react';
+import React, { useState } from 'react';
+import useInterval from '@use-it/interval';
+import { motion } from 'framer-motion';
 import './App.css';
 
 const messages = [
@@ -12,17 +14,61 @@ const messages = [
 ];
 
 export default function App() {
+  const [messageToShow, setMessageToShow] = useState(0);
+
+  useInterval(() => {
+    setMessageToShow((messageToShow) => messageToShow + 1);
+  }, 2000);
+
   return (
-    <div className="app">
-      <div className="walkthrough">
+    <div className='app'>
+      <div className='walkthrough'>
         {messages.map((message, index) => {
-          return (
-            <div key={index} className="message">
-              {message.text}
-            </div>
-          );
+          if (messageToShow + 1 === index) {
+            return <Dots key={index} index={index} />;
+          }
+
+          if (messageToShow <= index) {
+            return <div key={index}></div>;
+          }
+          return <Message key={index} message={message} />;
         })}
       </div>
     </div>
   );
 }
+
+const Message = ({ message }) => {
+  return (
+    <motion.div
+      initial={{ rotate: -5, scale: 0.2 }}
+      animate={{ scale: 1.0, rotate: 0 }}
+      transition={{ duration: 0.1 }}
+      className='message'
+    >
+      {/* eslint-disable-next-line */}
+      <div className='avatar'>😎</div>
+      <div className='text'>{message.text}</div>
+      {/* eslint-disable-next-line */}
+      <div className='avatar'>👀</div>
+    </motion.div>
+  );
+};
+
+const Dots = ({ index }) => {
+  const leftRight = index % 2 ? 'is-left' : 'is-right';
+
+  return (
+    <motion.div
+      initial={{ rotate: 10, scale: 0.0 }}
+      animate={{ scale: 1.0, rotate: 0 }}
+      className={`typing ${leftRight}`}
+    >
+      <div className='dots'>
+        <div />
+        <div />
+        <div />
+      </div>
+    </motion.div>
+  );
+};
