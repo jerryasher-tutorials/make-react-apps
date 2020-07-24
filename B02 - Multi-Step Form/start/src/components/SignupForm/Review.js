@@ -1,5 +1,6 @@
 import React from 'react';
 
+import Animator from './Animator';
 import { useSignupForm } from './SignupFormContext';
 
 export default function Review() {
@@ -12,22 +13,24 @@ export default function Review() {
   };
 
   return (
-    <form className='review' onSubmit={handleSubmit}>
-      <h2>Review your info</h2>
-      <p>
-        <strong>name</strong>: {profile.name}
-      </p>
-      <p>
-        <strong>email</strong>: {profile.email}
-      </p>
-      <p>
-        <strong>twitter</strong>: {social.twitter}
-      </p>
-      <p>
-        <strong>fb</strong>: {social.facebook}
-      </p>
+    <Animator>
+      <form className='review' onSubmit={handleSubmit}>
+        <h2>Review your info</h2>
+        <p>
+          <strong>name</strong>: {profile.name}
+        </p>
+        <p>
+          <strong>email</strong>: {profile.email}
+        </p>
+        <p>
+          <strong>twitter</strong>: {social.twitter}
+        </p>
+        <p>
+          <strong>fb</strong>: {social.facebook}
+        </p>
 
-      <input type='submit' value='Submit all your data' />
-    </form>
+        <input type='submit' value='Submit all your data' />
+      </form>
+    </Animator>
   );
 }

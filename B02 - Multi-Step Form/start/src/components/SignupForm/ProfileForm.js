@@ -2,6 +2,7 @@ import React from 'react';
 import { useForm } from 'react-hook-form';
 import { useHistory } from 'react-router-dom';
 
+import Animator from './Animator';
 import { useSignupForm } from './SignupFormContext';
 
 // regex for email
@@ -22,25 +23,27 @@ export default function ProfileForm() {
   const { register, handleSubmit, errors } = useForm();
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)}>
-      <h2>Tell us about yourself</h2>
-      {errors.name && 'name is required'}
-      <input
-        type='text'
-        name='name'
-        placeholder="What's your name"
-        defaultValue={profile.name}
-        ref={register({ required: true })}
-      />
-      {errors.email && 'email is required'}
-      <input
-        type='text'
-        name='email'
-        placeholder="What's your email"
-        defaultValue={profile.email}
-        ref={register({ required: true, pattern: EMAIL_RE })}
-      />
-      <input type='submit' value='next' />
-    </form>
+    <Animator>
+      <form onSubmit={handleSubmit(onSubmit)}>
+        <h2>Tell us about yourself</h2>
+        {errors.name && 'name is required'}
+        <input
+          type='text'
+          name='name'
+          placeholder="What's your name"
+          defaultValue={profile.name}
+          ref={register({ required: true })}
+        />
+        {errors.email && 'email is required'}
+        <input
+          type='text'
+          name='email'
+          placeholder="What's your email"
+          defaultValue={profile.email}
+          ref={register({ required: true, pattern: EMAIL_RE })}
+        />
+        <input type='submit' value='next' />
+      </form>
+    </Animator>
   );
 }
