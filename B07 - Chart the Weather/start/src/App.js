@@ -5,7 +5,6 @@ import GeoForm from './components/GeoForm';
 // openweathermap.org
 // course:
 // https://api.openweathermap.org/data/2.5/onecall?lat=33.441792&lon=-94.037689&exclude=hourly,minutely&units=imperial&appid=bb96c7f9ac6f57dc00333727c5407547
-// api key: bb96c7f9ac6f57dc00333727c5407547
 
 const openweather_api_key = process.env.REACT_APP_OPENWEATHER_API_KEY;
 const openweather_endpoint = 'api.openweathermap.org/data/2.5';

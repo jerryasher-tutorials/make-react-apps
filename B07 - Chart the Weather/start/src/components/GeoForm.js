@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 
 // google maps api
-// api key: AIzaSyDp4os33WF6-4d-xFVyL0HsUUHN7dOml_w
 const geocode_api_key = process.env.REACT_APP_GOOGLE_GEOCODING_API_KEY;
 const geocode_endpoint = 'https://maps.googleapis.com/maps/api/geocode/json';
 
