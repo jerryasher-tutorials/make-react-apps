@@ -19,7 +19,7 @@ export default function App() {
   return (
     <div className="app">
       {/* form goes here */}
-      <GeoForm updateLatLong={setLatLong} />
+      <GeoForm setLatLong={setLatLong} />
       <div>LatLong: {latLongStr}</div>
       {/* chart goes here */}
       {latLong.status !== null && <WeatherChart latLong={latLong} />}
