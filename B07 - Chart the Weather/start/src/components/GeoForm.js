@@ -23,7 +23,7 @@ export default function GeoForm({ setLatLong }) {
 
     const response = await fetch(`${geocode_endpoint}?${query}`);
     const data = await response.json();
-    console.log('GeoForm -> data', data);
+    // console.log('GeoForm -> data', data);
     // we have data!
 
     const { status, results } = data;
@@ -43,21 +43,24 @@ export default function GeoForm({ setLatLong }) {
 
   // getGeoCodeAddress
   const getGeoCodeAddress = useCallback((address) => {
-    console.log('memoizing...');
+    // console.log('memoizing...');
     geoCodeAddress(address);
   }, []);
 
   useEffect(() => {
-    console.log('UseEffect: address', address);
+    // console.log('UseEffect: address', address);
 
     if (address && lookup) {
       // comparison: how does Geocode package do?
+      /*       
       Geocode.fromAddress(address).then((res) => {
         console.log('Geocode.fromAddress:res', res);
       });
+      */
 
       getGeoCodeAddress(address);
     }
+
     setLookup(false);
   }, [address, lookup, getGeoCodeAddress]);
 
@@ -74,7 +77,7 @@ export default function GeoForm({ setLatLong }) {
         value={address}
         onChange={(e) => setAddress(e.target.value)}
       />
-      {/* <button>locate</button> */}
+      {/* <button>whether</button> */}
     </form>
   );
 }

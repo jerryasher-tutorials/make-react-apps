@@ -11,16 +11,11 @@ export default function App() {
   // 4. format it for chart
   // 5. display the chart
 
-  let latLongStr = '';
-  if (latLong.status) {
-    latLongStr = `${latLong.status} -> ${latLong.lat}, ${latLong.long}`;
-  }
-
   return (
     <div className="app">
       {/* form goes here */}
       <GeoForm setLatLong={setLatLong} />
-      <div>LatLong: {latLongStr}</div>
+
       {/* chart goes here */}
       {latLong.status !== null && <WeatherChart latLong={latLong} />}
     </div>
