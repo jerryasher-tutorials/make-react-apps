@@ -1,77 +1,87 @@
 import React from 'react';
-import { useState } from 'react';
 import { useContext, createContext } from 'react';
 import { useReducer } from 'react';
 
-export const CartContext = createContext();
+import products from '../products';
+
+const CartContext = createContext();
 CartContext.displayName = 'CartContext';
 export const useCart = () => useContext(CartContext);
 
-// export const useCart = () => {
-//   return {
-//     addItem: (s, p) => console.log(s, p),
-//     removeItem: (s) => console.log(s),
-//   };
-// };
+const initialState = { cart: [] };
+function reducer(state, { type, payload }) {
+  let newState;
+  switch (type) {
+    case 'ADD':
+      newState = {
+        ...state,
+        cart: [
+          ...state.cart,
+          products.find((product) => product.sku === payload),
+        ],
+      };
+      break;
+    case 'REMOVE':
+      const itemIndex = state.cart.findIndex((p) => p.sku === payload);
+      const newCart = [...state.cart];
+      if (itemIndex > -1) newCart.splice(itemIndex, 1);
+      newState = {
+        ...state,
+        cart: [...newCart],
+      };
 
-// export function CartProvider({ children }) {
-//   return <ul><li>{children}</li></ul>;
-// }
+      break;
+    case 'EMPTY':
+      break;
+    default:
+  }
+
+  return newState;
+}
 
 export function CartProvider({ children }) {
-  function reducer(state, action) {
-    console.log('reducer -> state', state);
-    const { shoppingCart } = state;
-    console.log('reducer -> shoppingCart', shoppingCart);
-    const { type, payload } = action;
-    console.log('reducer -> payload', payload);
-    console.log('reducer -> type', type);
-
-    let newCart;
-    if (type === 'ADD') {
-      newCart = [...shoppingCart, payload];
-    }
-
-    if (type === 'REMOVE') {
-      const ndx = shoppingCart.indexOf(payload);
-      if (ndx >= 0) {
-        newCart = [
-          ...shoppingCart.slice(0, ndx),
-          ...shoppingCart.slice(ndx + 1),
-        ];
-      } else {
-        newCart = [...shoppingCart];
-      }
-    }
-
-    console.log('reducer -> newCart', newCart);
-    console.log('reducer -> state', state);
-
-    const newState = { ...state, shoppingCart: newCart };
-    console.log('reducer -> newState', newState);
-    return newState;
-  }
-
-  function itemCount() {
-    return shoppingCart.length;
-  }
-
-  const [state, dispatch] = useReducer(reducer, { shoppingCart: [] });
-  // const [state, dispatch] = useState({ shoppingCart: [] });
-
-  const { shoppingCart } = state;
+  const [state, dispatch] = useReducer(reducer, initialState);
 
   const addItem = (sku) => {
     dispatch({ type: 'ADD', payload: sku });
   };
-  const removeItem = (sku) => {
-    dispatch({ type: 'REMOVE', payload: sku });
+  const removeItem = (sku) => dispatch({ type: 'REMOVE', payload: sku });
+
+  function countSkuInCart(sku) {
+    let count = 0;
+    state.cart.forEach((item) => (count += item.sku === sku ? 1 : 0));
+    return count;
+  }
+  function totalPrice() {
+    const prices = state.cart.map((product) => product.price);
+    const total = prices.reduce((subTotal, price) => subTotal + price, 0);
+
+    return total;
+  }
+
+  function groupCart() {
+    const groupingCart = {};
+    state.cart.forEach((p) => {
+      const { sku } = p;
+      if (sku in groupingCart) {
+        groupingCart[sku].quant = groupingCart[sku].quant + 1;
+      } else {
+        groupingCart[sku] = { quant: 1, item: p };
+      }
+    });
+
+    const entries = Object.entries(groupingCart);
+    return groupingCart;
+  }
+
+  const context = {
+    addItem,
+    removeItem,
+    countSkuInCart,
+    groupCart,
+    totalPrice,
+    cart: state.cart,
   };
-
-  const [actions] = useState({ addItem, removeItem });
-
-  const context = { ...actions, shoppingCart, itemCount };
-  console.log('reducer -> context', context);
 
   return (
     <CartContext.Provider value={context}>{children}</CartContext.Provider>
